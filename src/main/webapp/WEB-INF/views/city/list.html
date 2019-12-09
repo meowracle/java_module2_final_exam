@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List cities</title>
+</head>
+<body>
+<table>
+<!--    <tr>
+        <td><a href="/">Về trang chủ</a></td>
+    </tr>-->
+    <tr>
+        <td><a href="/city/create-city">Thêm thành phố</a></td>
+    </tr>
+</table>
+<h1>Danh sách thành phố</h1>
+<!--<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>-->
+<!--<form>
+    Tìm thành phố theo tên:
+    <input name="key_word" type="text"/>
+    <input type="submit" value="Search"/>
+</form>-->
+<br/>
+<table border="1">
+    <tr>
+        <th>Thành phố</th>
+        <th>Quốc gia</th>
+    </tr>
+    <th:block th:each="city : ${cities}">
+        <tr>
+            <td><a th:href="@{/city/view/__${city.id}__}" th:text="${city.name}"></a></td>
+            <td th:text="${city.country.name}"></td>
+            <td><a th:href="@{/city/edit-city/__${city.id}__ }">Edit</a></td>
+            <td><a th:href="@{/city/delete-city/__${city.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:href="@{'/cities'(page=${cities.number - 1})}" th:if="${cities.hasPrevious()}">Previous</a>
+    <span th:text="${cities.number + 1}"></span>/<span th:text="${cities.totalPages}"></span>
+    <a th:href="@{'/cities'(page=${cities.number + 1})}" th:if="${cities.hasNext()}">Next</a>
+</div>
+</body>
+</html>

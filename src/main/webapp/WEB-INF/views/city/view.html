@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View City</title>
+</head>
+<body>
+<h1>City Detail</h1>
+<p>
+    <a href="/city/cities">City list</a>
+</p>
+<form th:object="${city}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td><input type="text" th:field="*{country}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Area</td>
+            <td><input type="text" th:field="*{area}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Population</td>
+            <td><input type="text" th:field="*{population}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>GDP</td>
+            <td><input type="text" th:field="*{gdp}" readonly="readonly"/></td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td><textarea type="text" th:field="*{description}" readonly="readonly" rows="5" cols="100"></textarea></td>
+        </tr>
+        <tr>
+            <td><button th:method="get"><a th:href="@{/city/edit-city/__${city.id}__}">Edit</a></button></td>
+            <td><button th:method="get"><a th:href="@{/city/delete-city/__${city.id}__}">Delete</a></button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
